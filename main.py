@@ -6,6 +6,11 @@ def main():
     pygame.init()
     # Set up GUI window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    clock = pygame.time.Clock()
+    dt = 0 # delta time between frames
+
+
     # Create game loop 
     running = True 
     while running:
@@ -15,9 +20,12 @@ def main():
                 return 
         # fill screen with black
         screen.fill((0, 0, 0))
+
         # refresh the display
         pygame.display.flip()
-
+        
+        # Cap the frame rate
+        dt = clock.tick(60) / 1000  # dt is in seconds
     
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
