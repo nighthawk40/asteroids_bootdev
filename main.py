@@ -1,5 +1,6 @@
 import pygame 
 from constants import * 
+from player import Player
 
 def main():
     # Intialize Pygame
@@ -10,6 +11,8 @@ def main():
     clock = pygame.time.Clock()
     dt = 0 # delta time between frames
 
+    # Create player instance
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     # Create game loop 
     running = True 
@@ -21,9 +24,12 @@ def main():
         # fill screen with black
         screen.fill((0, 0, 0))
 
+        # Draw player
+        player.draw(screen)
+
         # refresh the display
         pygame.display.flip()
-        
+
         # Cap the frame rate
         dt = clock.tick(60) / 1000  # dt is in seconds
     
