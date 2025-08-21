@@ -44,6 +44,15 @@ def main():
         # Update game state
         updatable.update(dt)
 
+        # Check for collisions between shots and asteroids
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.check_collision(shot):
+                    asteroid.split()
+                    shot.kill()
+                    break
+
+        # Check for collisions between player and asteroids
         for asteroid in asteroids:
             if asteroid.check_collision(player):
                 print("Game over!")
