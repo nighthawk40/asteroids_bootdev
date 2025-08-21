@@ -11,6 +11,12 @@ def main():
     clock = pygame.time.Clock()
     dt = 0 # delta time between frames
 
+    # Create sprite groups for updatable and drawable objects
+    # This allows us to manage game objects more easily
+    # updatable group will contain objects that need to be updated each frame
+    # drawable group will contain objects that need to be drawn each frame
+    # We will use these groups to manage the player and other game objects
+    # We will also use these groups to manage the player and other game objects
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     Player.containers = (updatable, drawable)
