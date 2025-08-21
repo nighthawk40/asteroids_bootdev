@@ -11,8 +11,13 @@ def main():
     clock = pygame.time.Clock()
     dt = 0 # delta time between frames
 
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
     # Create player instance
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    
 
     # Create game loop 
     running = True 
@@ -22,14 +27,16 @@ def main():
             if event.type == pygame.QUIT:
                 return 
 
-        # Update player 
-        player.update(dt)
-        
+        # Update game state
+        updatable.update(dt)
+
         # fill screen with black
         screen.fill((0, 0, 0))
 
-        # Draw player
-        player.draw(screen)
+
+        # Draw objects
+        for obj in drawable:
+            obj.draw(screen)
 
         # refresh the display
         pygame.display.flip()
