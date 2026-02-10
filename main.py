@@ -1,6 +1,7 @@
 import pygame 
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
 from logger import log_state
+from player import Player
 
 def main():
 
@@ -13,6 +14,12 @@ def main():
 
     # Get new instance of GUI window with SCREEN_HEIGHT and SCREEN_WIDTH
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    # Create game clock object and initialize dt
+    game_clock = pygame.time.Clock()
+    dt = 0
+
+    # Create Player
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     # Create game loop
     while True:
@@ -28,8 +35,14 @@ def main():
         # Fill screen to be black
         screen.fill("black")
 
+        # draw player
+        player.draw(screen)
+
         # Refresh the screen
         pygame.display.flip()
+
+        # Pause loop for 1/60th a second before continuing
+        dt = game_clock.tick(60) / 1000
 
 
 if __name__ == "__main__":
